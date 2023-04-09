@@ -1,0 +1,15 @@
+usergroups:
+  - monkeys
+  - admins
+
+users:
+  - {name: 'owhan', groups: 'monkeys', smbpasswd: ''}
+  - {name: 'supermonkey', groups: 'monkeys, admins', smbpasswd: ''}
+
+adminuser: supermonkey
+
+docker: {
+  data_dir: '/docker/data',
+  PUID: '',
+  PGID: '' 
+}

@@ -1,0 +1,28 @@
+---
+- name: Create necessary usergroups
+  group:
+    name: "{{item}}"
+    state: present
+  with_items:
+    "{{usergroups}}"
+
+- name: Create users
+  user:
+    name: "{{item.name}}"
+    groups: "{{item.groups}}"
+    append: yes
+    password: test
+    update_password: on_create
+  with_items:
+    "{{users}}"
+
+- name: Create home folders
+  file:
+    path: /home/{{item.name}}
+    state: directory
+    owner: "{{item.name}}"
+    group: "{{item.name}}"
+    mode: u=rwx,g=r,o=r
+  with_items:
+    "{{users}}"
+

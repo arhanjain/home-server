@@ -1,0 +1,30 @@
+---
+- name: Setup Docker environment variables
+  template:
+    src: templates/dockerEnv.env
+    dest: "../.env"
+
+- name: Install necesary Dockery packages
+  apt:
+    name:
+      - docker
+      - docker-composer
+    state: latest
+    cache_valid_time: 3600
+
+- name: Make sure docker group exists
+  group:
+    name: docker
+    state: present
+
+- name: Add user {{adminuser}} to docker group
+  user:
+    name: "{{adminuser}}"
+    groups: docker
+    append: yes
+
+- name: Create docker data folder
+  file:
+    path: "{{docker.data_dir}}"
+    state: directory
+
