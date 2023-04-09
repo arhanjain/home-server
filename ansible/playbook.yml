@@ -1,0 +1,21 @@
+---
+  - name: "Set up home server"
+    hosts: all
+
+    become: true
+    become_user: root
+
+    vars_files:
+      - vars.yml
+
+    tasks:
+    - name: Install generic packages
+      apt:
+        name:
+          - software-properties-common
+          - dkms
+        state: latest
+        cache_valid_time: 3600
+
+    - import_tasks: tasks/setupUsersTask.yml
+    - import_tasks: tasks/setupDockerTask.yml

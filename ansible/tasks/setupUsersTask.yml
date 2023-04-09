@@ -11,8 +11,9 @@
     name: "{{item.name}}"
     groups: "{{item.groups}}"
     append: yes
-    password: test
+    password: "{{ 'password' | password_hash('sha512') }}"
     update_password: on_create
+    shell: /bin/bash
   with_items:
     "{{users}}"
 

@@ -8,7 +8,7 @@
   apt:
     name:
       - docker
-      - docker-composer
+      - docker-compose
     state: latest
     cache_valid_time: 3600
 

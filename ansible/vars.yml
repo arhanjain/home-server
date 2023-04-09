@@ -1,10 +1,11 @@
 usergroups:
   - monkeys
   - admins
+  - docker
 
 users:
-  - {name: 'owhan', groups: 'monkeys', smbpasswd: ''}
-  - {name: 'supermonkey', groups: 'monkeys, admins', smbpasswd: ''}
+  - {name: 'owhan', groups: 'monkeys, docker', smbpasswd: ''}
+  - {name: 'supermonkey', groups: 'monkeys, admins, docker', smbpasswd: ''}
 
 adminuser: supermonkey
 
